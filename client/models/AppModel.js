@@ -21,10 +21,11 @@ var AppModel = Backbone.Model.extend({
       this.get('songQueue').push(song);
     }, this);
 
-    params.library.on('ended',function(){
-      this.get('songQueue').shift();
-      this.get('songQueue').playFirst();
-    },this)
+
+    params.library.on('ended', function(song){
+      this.get('songQueue').trigger('ended');
+    }, this);
+
   }
 
 });

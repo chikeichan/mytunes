@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <body>
+    <div id='player'></div>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
     <script src="bower_components/jquery/jquery.min.js"></script>
@@ -17,6 +18,8 @@
     <script src="views/PlayerView.js"></script>
     <script src="views/LibraryView.js"></script>
     <script src="views/LibraryEntryView.js"></script>
+    <script src="views/SongQueueEntryView.js"></script>
+    <script src="views/SongQueueView.js"></script>
     <script src="views/AppView.js"></script>
 
     <script>
@@ -27,10 +30,14 @@
 
         // build a view for the top level of the whole app
         var appView = new AppView({model: app});
+        var songQueueView = new SongQueueView({el: $('#queue'),collection: app.get('songQueue')});
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        $('#player').append(appView.render());
       });
     </script>
+    <table id='queue'>
+        <th>Queue</th>
+    </table>
   </body>
 </html>
